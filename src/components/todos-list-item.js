@@ -2,6 +2,7 @@ import React from "react";
 
 class ToDosListItem extends React.Component {
     
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +15,7 @@ class ToDosListItem extends React.Component {
             return (
                 <td>
                     <button>Save</button>
-                    <button>Delete</button>
+                    <button onClick={this.onCancelEdit.bind(this)}>Cancel</button>
                 </td>
             )
         }
@@ -42,6 +43,12 @@ class ToDosListItem extends React.Component {
     onEditClick() {
         this.setState({
             isEditing: true
+        })
+    }
+    
+    onCancelEdit() {
+        this.setState({
+            isEditing: false
         })
     }
     
