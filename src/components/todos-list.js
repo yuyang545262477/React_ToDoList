@@ -6,6 +6,7 @@ import ToDosListHeader from "./todos-list-header";
 class TodosList extends React.Component {
     
     render() {
+        window.console.log(this.renderItems());
         return (
             <table>
                 <ToDosListHeader/>
@@ -17,7 +18,9 @@ class TodosList extends React.Component {
     }
     
     renderItems() {
+        
         return _.map(this.props.todos, (todo, index)=><ToDosListItem key={index} {...todo}/>)
+        
     }
 }
 

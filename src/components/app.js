@@ -13,6 +13,7 @@ const todos = [
 ];
 
 class App extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +25,20 @@ class App extends React.Component {
         return (
             <div>
                 <h1>React ToDos App</h1>
-                <CreatToDos/>
+                <CreatToDos createTaskS={this.createTask.bind(this)}/>
                 <ToDosList todos={this.state.todos}/>
             </div>
         )
+    }
+    
+    createTask(task) {
+        this.state.todos.push({
+            task: task,
+            isCompleted: false
+        });
+        this.setState({
+            todos: this.state.todos
+        });
     }
 }
 
