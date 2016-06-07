@@ -87,10 +87,16 @@ class ToDosListItem extends React.Component {
         return (
             <td>
                 <button onClick={this.onEditClick.bind(this)}>Edit</button>
-                <button>Delete</button>
+                <button onClick={this.onDeleted.bind(this)}>Delete</button>
             </td>
         )
         
+    }
+    
+    onDeleted(event) {
+        event.preventDefault();
+        const deleteCask = this.props.task;
+        this.props.deleteTask(deleteCask);
     }
     
     
