@@ -41,7 +41,10 @@ class ToDosListItem extends React.Component {
         };
         
         return (
-            <td style={styleObj}>{task}</td>
+            <td style={styleObj}
+                onClick={this.props.toggleTask.bind(this,task)}>
+                {task}
+            </td>
         )
         
     }

@@ -18,8 +18,10 @@ class TodosList extends React.Component {
     }
     
     renderItems() {
+        // window.console.log(this.props);
+        const props = _.omit(this.props, 'todos');
         
-        return _.map(this.props.todos, (todo, index)=><ToDosListItem key={index} {...todo}/>)
+        return _.map(this.props.todos, (todo, index)=><ToDosListItem key={index} {...todo} {...props}/>)
         
     }
 }
