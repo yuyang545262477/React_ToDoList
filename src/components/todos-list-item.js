@@ -10,30 +10,11 @@ class ToDosListItem extends React.Component {
         };
     }
     
-    renderActionsSection() {
-        if (this.state.isEditing) {
-            return (
-                <td>
-                    <button>Save</button>
-                    <button onClick={this.onCancelEdit.bind(this)}>Cancel</button>
-                </td>
-            )
-        }
-        return (
-            <td>
-                <button onClick={this.onEditClick.bind(this)}>Edit</button>
-                <button>Delete</button>
-            </td>
-        )
-        
-    }
     
     render() {
         return (
             <tr>
-                <td>
-                    {this.props.task}
-                </td>
+                {this.renderTaskSection()}
                 {this.renderActionsSection()}
             </tr>
         )
@@ -50,6 +31,37 @@ class ToDosListItem extends React.Component {
         this.setState({
             isEditing: false
         })
+    }
+    
+    renderTaskSection() {
+        const {task, isCompleted} = this.props;
+        const styleObj = {
+            color: isCompleted ? 'green' : 'red',
+            cursor: 'pointer'
+        };
+        
+        return (
+            <td style={styleObj}>{task}</td>
+        )
+        
+    }
+    
+    renderActionsSection() {
+        if (this.state.isEditing) {
+            return (
+                <td>
+                    <button>Save</button>
+                    <button onClick={this.onCancelEdit.bind(this)}>Cancel</button>
+                </td>
+            )
+        }
+        return (
+            <td>
+                <button onClick={this.onEditClick.bind(this)}>Edit</button>
+                <button>Delete</button>
+            </td>
+        )
+        
     }
     
 }
