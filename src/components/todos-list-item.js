@@ -33,12 +33,38 @@ class ToDosListItem extends React.Component {
         })
     }
     
+    onSaveClick(event) {
+        event.preventDefault();
+        
+        //    get oldValue
+        const oldTask = this.props.task;
+        //    get newValue;
+        const newTask = this.refs.editInput.value;
+        
+        this.props.saveTask(oldTask, newTask);
+        this.setState({
+            isEditing: false
+        })
+        
+        
+    }
+    
     renderTaskSection() {
         const {task, isCompleted} = this.props;
         const styleObj = {
             color: isCompleted ? 'green' : 'red',
             cursor: 'pointer'
         };
+        
+        if (this.state.isEditing) {
+            return (
+                <td>
+                    <form action="" onSubmit={this.onSaveClick.bind(this)}>
+                        <input type="text" defaultValue={task} ref="editInput"/>
+                    </form>
+                </td>
+            )
+        }
         
         return (
             <td style={styleObj}
@@ -53,7 +79,7 @@ class ToDosListItem extends React.Component {
         if (this.state.isEditing) {
             return (
                 <td>
-                    <button>Save</button>
+                    <button onClick={this.onSaveClick.bind(this)}>Save</button>
                     <button onClick={this.onCancelEdit.bind(this)}>Cancel</button>
                 </td>
             )
@@ -66,6 +92,7 @@ class ToDosListItem extends React.Component {
         )
         
     }
+    
     
 }
 

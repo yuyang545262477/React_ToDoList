@@ -28,6 +28,8 @@ class App extends React.Component {
                 <CreatToDos createTaskS={this.createTask.bind(this)}/>
                 <ToDosList todos={this.state.todos}
                            toggleTask={this.toggleTask.bind(this)}
+                           saveTask={this.saveTask.bind(this)}
+                
                 />
             </div>
         )
@@ -44,6 +46,14 @@ class App extends React.Component {
             task: task,
             isCompleted: false
         });
+        this.setState({
+            todos: this.state.todos
+        });
+    }
+    
+    saveTask(oldValue, newValue) {
+        const foundTodo = _.find(this.state.todos, todo=>todo.task === oldValue);
+        foundTodo.task = newValue;
         this.setState({
             todos: this.state.todos
         });
